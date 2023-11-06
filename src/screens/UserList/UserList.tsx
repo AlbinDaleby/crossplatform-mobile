@@ -1,22 +1,23 @@
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import { useGetUsersQuery } from '../../store/api/usersApi'
 import { ListItem } from '@rneui/themed'
 
-const UserList = () => {
+const UserList = ({ navigation }) => {
 	const { data, isLoading } = useGetUsersQuery({})
-	console.log('data: ', data)	
 	return (
 		<View>
 			{isLoading ? <Text>Loading...</Text> : (
-				<View>
-					{data.map((user) => (
-						<ListItem>
-							<ListItem.Content>
-								<ListItem.Title>{`${user.firstName} ${user.lastName}`}</ListItem.Title>
-							</ListItem.Content>
-						</ListItem>
-					))}
-				</View>
+				<FlatList data={data} renderItem={({ item }) => (
+					<ListItem
+						key={item.id}
+						onPress={() => { navigation.navigate('UserInfo', { user: item }) }}
+					>
+						<ListItem.Content>
+							<ListItem.Title>{`${item.firstName} ${item.lastName}`}</ListItem.Title>
+						</ListItem.Content>
+					</ListItem>
+				)}>
+				</FlatList>
 			)}
 		</View>
 	)
