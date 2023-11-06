@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { store } from './src/store/store';
 import UserList from './src/screens/UserList/UserList';
@@ -21,16 +21,27 @@ const UserListStackScreen = () => {
 
 const Tab = createBottomTabNavigator();
 
+const NavigationWrapper = () => {
+  const loggedInAs = useSelector((state: any) => state.auth.loggedInAs) 
+
+  return (
+    <NavigationContainer>
+        <Tab.Navigator screenOptions={{ headerShown: false }}>
+          <Tab.Screen name="UserListStack" component={UserListStackScreen} />
+          <Tab.Screen name="UserForm" component={UserForm} options={{ headerShown: true }} />
+          {loggedInAs && (
+            <Tab.Screen name="UserInfo" component={UserInfo} options={{ title: `${loggedInAs.firstName} ${loggedInAs.lastName}`}} />
+          )}
+        </Tab.Navigator>
+      </NavigationContainer>
+  )
+}
+
 export default function App() {
   return (
     <ToastProvider>
       <Provider store={store}>
-        <NavigationContainer>
-          <Tab.Navigator screenOptions={{ headerShown: false }}>
-            <Tab.Screen name="UserList" component={UserListStackScreen} />
-            <Tab.Screen name="UserForm" component={UserForm} />
-          </Tab.Navigator>
-        </NavigationContainer>
+        <NavigationWrapper />
       </Provider>
     </ToastProvider>
   );
