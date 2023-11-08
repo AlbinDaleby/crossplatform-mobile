@@ -26,9 +26,9 @@ const NavigationWrapper = () => {
 
   return (
     <NavigationContainer>
-        <Tab.Navigator screenOptions={{ headerShown: false }}>
-          <Tab.Screen name="UserListStack" component={UserListStackScreen} />
-          <Tab.Screen name="UserForm" component={UserForm} options={{ headerShown: true }} />
+        <Tab.Navigator>
+          <Tab.Screen name="UserListStack" component={UserListStackScreen} options={{ headerShown: false }} />
+          <Tab.Screen name="UserForm" component={UserForm} />
           {loggedInAs && (
             <Tab.Screen name="UserInfo" component={UserInfo} options={{ title: `${loggedInAs.firstName} ${loggedInAs.lastName}`}} />
           )}
