@@ -8,7 +8,7 @@ Du kan utgå ifrån koden här: https://github.com/AlbinDaleby/crossplatform-mob
 
 ## G-Krav
 
-1. Gör det möjligt att redigera en `user` i appen:
+#### 1. Gör det möjligt att redigera en `user` i appen:
   - Visa en "Edit"-knapp bredvid varje user i `UserList`.
     - Förslagsvis kan du navigera användaren till `UserForm` för detta så den både kan skapa och uppdatera users.
     - För att kunna navigera till `UserForm` via `UserInfo` måste vi lägga till en `<UserListStack.Screen name="UserForm" component={UserForm} />` i `UserListStackScreen` i `App.tsx`.
@@ -23,7 +23,7 @@ Du kan utgå ifrån koden här: https://github.com/AlbinDaleby/crossplatform-mob
   })
   ```
 
-2. Gör det möjligt att radera en `user` i appen:
+#### 2. Gör det möjligt att radera en `user` i appen:
   - Visa en "Delete"-knapp bredvid varje user i `UserList`.
   - Anropa endpoint `deleteUser` från `usersApi.ts`
   ```jsx
@@ -32,7 +32,7 @@ Du kan utgå ifrån koden här: https://github.com/AlbinDaleby/crossplatform-mob
   deleteUser(id) // <-- id här ska vara en users id.
   ```
 
-3. Gör det möjligt för en inloggad `user` (Användaren från `loggedInAs`) att skapa en `post` där de kan skriva en text:
+#### 3. Gör det möjligt för en inloggad `user` (Användaren från `loggedInAs`) att skapa en `post` där de kan skriva en text:
   - Skapa en ny firebase collection för `posts` med fältet `text`, `createdBy` och `createdDate` Alla ska vara typen "string".
   ![Firebase](firebase-posts-collection.png "Firebase")
 
@@ -63,25 +63,28 @@ export const store = configureStore({
 
   - Lista alla posts i en ny screen `PostList` (/src/screens/PostList) där du visar alla posts i en `<FlatList>`.
 
-4. Paketera Appen till en `.apk`-fil genom vår script vi la till i `package.json` "Scripts"
+#### 4. Ladda upp koden + paketera Appen till en `.apk`-fil
+  - Använd `build-android`-skriptet vi skapade i `package.json` för att bygga appen.
+  - Skapa sedan ett publikt github-repo och skicka koden till mig (Albin Daleby) på Teams eller ladda upp koden på ITHS.
+  - Om du laddar upp koden på ITHS; Ta fört bort node_modules folder, sedan zippar du folder och laddar upp.
 
 ## VG-Krav
-1. Sortera din `UserList` i alfabetisk ordning.
+#### 1. Sortera din `UserList` i alfabetisk ordning.
   - Använd då gärna [useMemo](https://react.dev/reference/react/useMemo) så sorteringen endast sker när det är nödvändigt.
 
-2. När en användare raderas, Radera även alla posts den användaren har skapat.
+#### 2. När en användare raderas, Radera även alla posts den användaren har skapat.
 
-3. Gör det möjligt att markera flera användare samtidigt i din `<FlatList>` med hjälp av `<Checkbox>`.
+#### 3. Gör det möjligt att markera flera användare samtidigt i din `<FlatList>` med hjälp av `<Checkbox>`.
   - När en eller flera användare är markerade ska en knapp visas för "Bulk delete".
   - **Tips**: För att kunna ha ha en state för "checked" på varje element måste du bryta ut varje element i din `<FlatList>` till sin egna komponent. e.x `<UserItem>`.
 
-4. Gör det möjligt för användaren som skapade en post att radera den. Användare ska alltså bara kunna radera posts de själva skapat. Kolla då fältet `createdBy`.
+#### 4. Gör det möjligt för användaren som skapade en post att radera den. Användare ska alltså bara kunna radera posts de själva skapat. Kolla då fältet `createdBy`.
 
-5. Lägg till ett nytt fält `private` (typen boolean i firebase) på `posts`.
+#### 5. Lägg till ett nytt fält `private` (typen boolean i firebase) på `posts`.
   - Användare kan välja att checka i en `<CheckBox>` när de skapar en post som sätter en post till `private`. [Läs om checkbox för react-native-elements här](https://reactnativeelements.com/docs/components/checkbox)
   - posts som är `private` ska endast vara synliga för användaren som skapade den posten.
 ## Bonus
-1. Gör det möjligt för användare att gilla en `post`.
+#### 1. Gör det möjligt för användare att gilla en `post`.
   - Visa då "like-count" bredvid varje post. Tänk på att spara vilken användare det var som gillade posten isåfall, så du en användare kan ta bort sin "like" från en post.
 
-2. Visa alla `posts` en användare har skapat när du går in på den användarens `UserInfo`
+#### 2. Visa alla `posts` en användare har skapat när du går in på den användarens `UserInfo`
