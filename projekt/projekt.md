@@ -65,8 +65,8 @@ export const store = configureStore({
 
 #### 4. Ladda upp koden + paketera Appen till en `.apk`-fil
   - Använd `build-android`-skriptet vi skapade i `package.json` för att bygga appen.
-  - Skapa sedan ett publikt github-repo och skicka koden till mig (Albin Daleby) på Teams eller ladda upp koden på ITHS.
-  - Om du laddar upp koden på ITHS; Ta fört bort node_modules folder, sedan zippar du folder och laddar upp.
+  - Skapa sedan ett publikt github-repo eller ladda upp koden direkt på ITHS.
+    - Om du laddar upp koden till ITHS; Ta först bort node_modules mappen, zippa och laddar upp.
 
 ## VG-Krav
 #### 1. Sortera din `UserList` i alfabetisk ordning.
