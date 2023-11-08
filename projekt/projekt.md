@@ -85,6 +85,6 @@ export const store = configureStore({
   - posts som är `private` ska endast vara synliga för användaren som skapade den posten.
 ## Bonus
 #### 1. Gör det möjligt för användare att gilla en `post`.
-  - Visa då "like-count" bredvid varje post. Tänk på att spara vilken användare det var som gillade posten isåfall, så du en användare kan ta bort sin "like" från en post.
+  - Visa då "like-count" bredvid varje post. Tänk på att spara vilken användare det var som gillade posten så de kan ta bort sin "like" från en post.
 
 #### 2. Visa alla `posts` en användare har skapat när du går in på den användarens `UserInfo`
