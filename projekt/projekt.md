@@ -1,10 +1,12 @@
-### Genomgång av projekt
+# Genomgång av projekt
+
+### Skapa en "Twitter"-liknande applikation där användare kan skapa posts
 
 Du kan utgå ifrån koden här: https://github.com/AlbinDaleby/crossplatform-mobile. Där har jag uppdaterat koden i `usersApi.ts` för att kunna uppdatera och radera en user.
 
-##### Projektet lämnas in individuellt men ni uppmuntras att sitta tillsammans och hjälpa varandra.
+### Projektet lämnas in individuellt men ni uppmuntras att sitta tillsammans och hjälpa varandra.
 
-#### G-Krav
+## G-Krav
 
 1. Gör det möjligt att redigera en `user` i appen:
   - Visa en "Edit"-knapp bredvid varje user i `UserList`.
@@ -63,7 +65,7 @@ export const store = configureStore({
 
 4. Paketera Appen till en `.apk`-fil genom vår script vi la till i `package.json` "Scripts"
 
-### VG-Krav
+## VG-Krav
 1. Sortera din `UserList` i alfabetisk ordning.
   - Använd då gärna [useMemo](https://react.dev/reference/react/useMemo) så sorteringen endast sker när det är nödvändigt.
 
@@ -78,7 +80,7 @@ export const store = configureStore({
 5. Lägg till ett nytt fält `private` (typen boolean i firebase) på `posts`.
   - Användare kan välja att checka i en `<CheckBox>` när de skapar en post som sätter en post till `private`. [Läs om checkbox för react-native-elements här](https://reactnativeelements.com/docs/components/checkbox)
   - posts som är `private` ska endast vara synliga för användaren som skapade den posten.
-### Bonus
+## Bonus
 1. Gör det möjligt för användare att gilla en `post`.
   - Visa då "like-count" bredvid varje post. Tänk på att spara vilken användare det var som gillade posten isåfall, så du en användare kan ta bort sin "like" från en post.
 
