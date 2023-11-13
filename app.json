@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "crossplatform-mobile",
-    "slug": "crossplatform-mobile",
+    "name": "Twatter",
+    "slug": "Twatter",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,16 +15,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.albindalebysprinto.Twatter"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.albindalebysprinto.Twatter"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "deb6ef89-5a04-4091-bb3b-b0361f47028f"
+      }
     }
   }
 }
