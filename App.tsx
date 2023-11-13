@@ -3,11 +3,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ToastProvider } from "react-native-toast-notifications";
 import { Provider, useSelector } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 import { UserForm } from "./src/screens/UserForm/UserForm";
 import { UserInfo } from "./src/screens/UserInfo/UserInfo";
 import UserList from "./src/screens/UserList/UserList";
-import { store } from "./src/store/store";
+import { persistor, store } from "./src/store/store";
 
 const UserListStack = createNativeStackNavigator();
 
@@ -52,7 +53,9 @@ export default function App() {
   return (
     <ToastProvider>
       <Provider store={store}>
-        <NavigationWrapper />
+        <PersistGate loading={null} persistor={persistor}>
+          <NavigationWrapper />
+        </PersistGate>
       </Provider>
     </ToastProvider>
   );
