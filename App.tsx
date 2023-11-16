@@ -1,10 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { I18nextProvider } from "react-i18next";
 import { ToastProvider } from "react-native-toast-notifications";
 import { Provider, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
+import i18n from "./i18n";
 import { UserForm } from "./src/screens/UserForm/UserForm";
 import { UserInfo } from "./src/screens/UserInfo/UserInfo";
 import UserList from "./src/screens/UserList/UserList";
@@ -54,7 +56,9 @@ export default function App() {
     <ToastProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <NavigationWrapper />
+          <I18nextProvider i18n={i18n}>
+            <NavigationWrapper />
+          </I18nextProvider>
         </PersistGate>
       </Provider>
     </ToastProvider>

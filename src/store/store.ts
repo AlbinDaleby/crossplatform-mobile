@@ -5,6 +5,8 @@ import { persistReducer, persistStore } from "redux-persist";
 
 import { usersApi } from "./api/usersApi";
 import authSlice from "./slices/authSlice";
+import configSlice from "./slices/configSlice";
+import { initializeI18n } from "../../i18n";
 
 const middlewares = [usersApi.middleware];
 
@@ -17,7 +19,7 @@ if (process.env.NODE_ENV === `development`) {
 const persistConfig = {
   key: "crossplatform-mobile-v1.0.0",
   storage: AsyncStorage,
-  whitelist: ["auth"], // Lägg till fler delar av store som du vill spara här.
+  whitelist: ["auth", "config"], // Lägg till fler delar av store som du vill spara här.
 };
 
 const persistedReducer = persistReducer(
@@ -25,6 +27,7 @@ const persistedReducer = persistReducer(
   combineReducers({
     [usersApi.reducerPath]: usersApi.reducer,
     auth: authSlice,
+    config: configSlice,
   }),
 );
 
@@ -42,6 +45,9 @@ export const store = configureStore({
     }).concat(...middlewares),
 });
 
-export const persistor = persistStore(store);
+export const persistor = persistStore(store, null, () => {
+  const state = store.getState();
+  initializeI18n(state.config.locale);
+});
 
 setupListeners(store.dispatch);

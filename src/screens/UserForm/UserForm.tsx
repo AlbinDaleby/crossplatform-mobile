@@ -1,5 +1,6 @@
 import { Input, Button } from "@rneui/themed";
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Text,
   View,
@@ -8,17 +9,32 @@ import {
   Keyboard,
 } from "react-native";
 import { useToast } from "react-native-toast-notifications";
+import { useDispatch, useSelector } from "react-redux";
 
+import i18n from "../../../i18n";
 import { useCreateUserMutation } from "../../store/api/usersApi";
+import { setLocale } from "../../store/slices/configSlice";
 
 export const UserForm = (props) => {
   const { navigation } = props;
   const lastNameRef = useRef(null);
 
+  const { t } = useTranslation();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [createUser, { isLoading }] = useCreateUserMutation();
   const toast = useToast();
+
+  const locale = useSelector((state: any) => state.config.locale);
+
+  const dispatch = useDispatch();
+
+  const changeLocale = () => {
+    const newLocale = locale === "sv" ? "en" : "sv";
+    i18n.changeLanguage(newLocale);
+    dispatch(setLocale(newLocale));
+  };
 
   const handleSubmit = () => {
     console.log("firstName: ", firstName);
@@ -82,11 +98,18 @@ export const UserForm = (props) => {
             placeholder="Last name"
           />
           <Button
-            title="Create user"
+            title={t("createUser")}
             disabled={isLoading}
             loading={isLoading}
             onPress={() => handleSubmit()}
           />
+          <View style={{ marginTop: 24 }}>
+            <Button
+              color="secondary"
+              onPress={changeLocale}
+              title={t("chooseLang")}
+            />
+          </View>
         </View>
       </View>
     </TouchableWithoutFeedback>
