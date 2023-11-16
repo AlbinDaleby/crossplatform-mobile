@@ -9,11 +9,8 @@ import {
   Keyboard,
 } from "react-native";
 import { useToast } from "react-native-toast-notifications";
-import { useDispatch, useSelector } from "react-redux";
 
-import i18n from "../../../i18n";
 import { useCreateUserMutation } from "../../store/api/usersApi";
-import { setLocale } from "../../store/slices/configSlice";
 
 export const UserForm = (props) => {
   const { navigation } = props;
@@ -25,16 +22,6 @@ export const UserForm = (props) => {
   const [lastName, setLastName] = useState("");
   const [createUser, { isLoading }] = useCreateUserMutation();
   const toast = useToast();
-
-  const locale = useSelector((state: any) => state.config.locale);
-
-  const dispatch = useDispatch();
-
-  const changeLocale = () => {
-    const newLocale = locale === "sv" ? "en" : "sv";
-    i18n.changeLanguage(newLocale);
-    dispatch(setLocale(newLocale));
-  };
 
   const handleSubmit = () => {
     console.log("firstName: ", firstName);
@@ -103,13 +90,6 @@ export const UserForm = (props) => {
             loading={isLoading}
             onPress={() => handleSubmit()}
           />
-          <View style={{ marginTop: 24 }}>
-            <Button
-              color="secondary"
-              onPress={changeLocale}
-              title={t("chooseLang")}
-            />
-          </View>
         </View>
       </View>
     </TouchableWithoutFeedback>
