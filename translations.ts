@@ -1,7 +1,7 @@
 export const resources = {
   en: {
     translation: {
-      createUser: "Create user button",
+      createUser: "Create user",
       chooseLang: "Switch to swedish",
       currentLanguage: "Current language: {{lang}}",
     },
