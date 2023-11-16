@@ -1,10 +1,10 @@
 import { ListItem } from "@rneui/themed";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, RefreshControl } from "react-native";
 
 import { useGetUsersQuery } from "../../store/api/usersApi";
 
 const UserList = ({ navigation }) => {
-  const { data, isLoading } = useGetUsersQuery({});
+  const { data, isLoading, refetch } = useGetUsersQuery({});
   return (
     <View>
       {isLoading ? (
@@ -12,6 +12,9 @@ const UserList = ({ navigation }) => {
       ) : (
         <FlatList
           data={data}
+          refreshControl={
+            <RefreshControl refreshing={isLoading} onRefresh={refetch} />
+          }
           renderItem={({ item }) => (
             <ListItem
               key={item.id}
